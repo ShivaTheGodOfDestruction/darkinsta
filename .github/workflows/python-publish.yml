@@ -1,0 +1,32 @@
+# This workflows will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name:darkinsta
+
+on:
+  release:
+    types: [python2]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: shiva the god of destruction 
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python2 main.py
+        Python2 api.py
+        pip install setuptools wheel twine
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ shiva }}
+        TWINE_PASSWORD: ${{ shiva }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
